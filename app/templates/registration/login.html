@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+    
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    {% load crispy_forms_tags %}
+    
+    <br>
+    <h2 class="text-center letraInicio">INICIO DE SESIÓN</h2>
+    <hr>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 ">
+                <div class="card" id="card-login">
+                    <div class="card-body">
+                        <h2 class="text-center letraIngresa pb-2">Ingresa tus datos</h2>
+                        <form action="" method="POST">
+                            {% csrf_token %} {{form | crispy}}
+                            <div>
+                                <a href="{% url 'reset_password' %}" class="linkRecuperar">Recuperar Contraseña</a>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-block btn-success btnIniciar" value="Iniciar Sesión">
+                            </div>
+                            <div class="text-center">
+                                <p class="letraLog">¿No tienes cuenta?</p>
+                                <a href="{% url 'registro' %}" class="linkRegistro">Registrate</a>
+                            </div>
+                            
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

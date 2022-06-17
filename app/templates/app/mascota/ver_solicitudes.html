@@ -1,0 +1,117 @@
+{% extends 'app/base.html' %}
+
+<!-- BLOCK JS  -->
+{% block js %}
+
+<script>
+    function aceptarSolicitud(id) {     
+        let url = window.location.href.split('/')
+        //alert(url[4])
+        Swal.fire({
+            "title": "¿Estas seguro?",
+            "text": "Esta acción no se puede revertir",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Si, Aprobar",
+            "confirmButtonColor": "#dc3545"
+        })
+            .then(function (result) {
+                if (result.isConfirmed) {
+                    window.location.href = "/aceptar_solicitud/" + url[4] + "/"
+                }
+            })
+    }
+
+    function rechazarSolicitud(id) {     
+        let url = window.location.href.split('/')
+        //alert(url[4])
+        Swal.fire({
+            "title": "¿Estas seguro?",
+            "text": "Esta acción no se puede revertir",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Si, Rechazar",
+            "confirmButtonColor": "#dc3545"
+        })
+            .then(function (result) {
+                if (result.isConfirmed) {
+                    window.location.href = "/rechazar_solicitud/" + url[4] + "/"
+                }
+            })
+    }
+
+
+    
+</script>
+
+{% endblock %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/mascotas.css' %}"> 
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %} {% load crispy_forms_tags %}
+<h2 class="text-center letraInicio">APROBAR / RECHAZAR SOLICITUDES</h2>
+<hr>
+<div class="row">
+    
+    <div class="col-12 col-md-8 offset-md-2">
+        <div class="card" id="cardAgregar">
+            <div class="card-body">
+                
+                <form action="" id="verSolicitudForm" method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %} {{form | crispy }}
+                    <div class="float-end">
+                        <a href="#" onclick="aceptarSolicitud()" class="btn btn-outline linkSolicitar text-center btn-sm mt-2">
+                            Aprobar Solicitud
+                        </a>
+                        &nbsp;
+                        <a href="#" onclick="rechazarSolicitud({{ m.id }})" class="btn btn-outline linkSolicitar text-center btn-sm mt-2">
+                            Rechazar Solicitud
+                        </a>
+                    </div>
+                </form>
+                {{mensaje}}
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<br><br> 
+
+<script>
+
+    var f = document.forms['verSolicitudForm'];
+        for(var i=0,fLen=f.length;i<fLen;i++){
+        f.elements[i].readOnly = true;
+    }
+
+    const x = document.getElementById('id_tipo_vivienda')
+    x.disabled=true
+
+    const a = document.getElementById('id_cantidad_mascotas')
+    a.disabled=true
+
+    const b = document.getElementById('id_mascota')
+    b.disabled=true
+    
+    const c = document.getElementById('id_estado_solicitud')
+    c.disabled=true
+
+    const d = document.getElementById('id_otra_mascota')
+    d.disabled=true
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %} {% block contenido %}
+
+<style>
+    .card-title {
+        margin-left: 37%;
+        font-style: italic
+    }
+
+    .card-img-top {
+        height: 250px;
+        width: 250px;
+        margin-left: 20%;
+    }
+
+    .card-img-bot {
+        display: block;
+        height: 450px;
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card {
+        background-color: #F5F5F5;
+        border: none;
+    }
+
+    hr.one {
+        height: 10px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(to left, blue, red);
+    }
+</style>
+<br>
+<div class="card-group">
+    <div class="card">
+        <h5 class="card-title">Rescate</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/1.jpeg' %}" alt="Card image cap">
+    </div>
+    <div class="card">
+        <h5 class="card-title">Rehabilitación</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/2.jpeg' %}" alt="Card image cap">
+    </div>
+    <div class="card">
+        <h5 class="card-title">Reubicación</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/3.jpeg' %}" alt="Card image cap">
+    </div>
+</div>
+<br>
+<div class="card-group">
+    <div class="card">
+        <h5 class="card-title">Alimentación</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/4.jpeg' %}" alt="Card image cap">
+    </div>
+    <div class="card">
+        <h5 class="card-title">Concientización</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/5.jpeg' %}" alt="Card image cap">
+    </div>
+    <div class="card">
+        <h5 class="card-title">Recolección</h5>
+        <img class="card-img-top" src="{% static 'app/img/nosotros/6.jpeg' %}" alt="Card image cap">
+    </div>
+</div>
+<br>
+<hr class="one">
+<br>
+<div class="descripcion">
+    <p style="font-size:18px;">Somos una fundación que cuenta con un pequeño refugio para rescatar animales en situación de calle. <br><br> Cuando logramos rescatar a estos animalitos, nos encargamos de rehabilitarlos y curarlos. Para lograrlo necesitamos siempre de la ayuda de
+        nuestros voluntarios que salen a las calles a recolectar dinero.<br><br>Una vez estos animalitos están sanos, procedemos a buscarles un hogar y nos aseguramos de que los dueños cumplan con la tenencia responsable. <br><br> Por otro lado, nos encargamos
+        de hacer recorridos diarios para alimentar a los animalitos que no podemos llevar al refugio. También aprovechamos de educar a las personas que nos siguen por redes sociales a través de infografías. <br><br> Esta fundación no habría surgido sin
+        la ayuda de nuestros voluntarios y todas las personas que amablemente nos donan comida o dinero para nuestros angelitos. Si quieres ser parte de esta familia puedes comunicarte a través del siguiente correo: <b style="color: orange;">dekiltroalma@gmail.com</b>        <br><br>
+    </p>
+</div>
+<hr class="one">
+
+<div class="card">
+    <img class="card-img-bot" src="{% static 'app/img/nosotros/8.jpg' %}">
+    <br>
+    <div class="text-center">
+        <h5><i>Si deseas aportar para la alimentación de nuestras mascotas, realiza tu depósito a nuestra</i> <b style="color: orange;">Cta rut 15.353.203-6</b></h5>
+    </div>
+</div>
+{% endblock %}

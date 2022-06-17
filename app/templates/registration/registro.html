@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+    
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    {% load crispy_forms_tags %}
+    <br>
+    <h2 class="text-center letraInicio">Registro de usuario</h2>
+    <hr>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card" id="cardRegistro">
+                    <div class="card-body">
+                        <h2 class="letraIngresa text-center">Ingresa tus datos</h2>
+                        <form action="" method="POST">
+                            {% csrf_token %} {{form | crispy}}
+                            <div class="d-flex float-end mt-4 pb-3">
+                                <a href="{% url 'login'%}" class="linkRegistro text-center mt-2">Iniciar sesión</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="submit" class="btn btn-success float-end btnRegistro px-4" value="Registrarse">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}

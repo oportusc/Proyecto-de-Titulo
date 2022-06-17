@@ -1,0 +1,75 @@
+{% extends 'app/base.html' %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK JS -->
+{%block js %} {% endblock%}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/mascotas.css' %}"> 
+
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %}
+<!-- Contenido de la web -->
+<div class="container mb-5 mt-5">
+    <img src="{% static 'app/img/Banner_Home.png' %}" class="img_fluid imgBanner">
+</div>
+<div class="container ">
+    <div class="row">
+        <div class="col-12 search borderContainer pt-2">
+            <form method="POST" class="row justify-content-between">
+                {% csrf_token %}
+                <div class="col-lg-4 mb-2">
+                    <select class="form-select" aria-label="Default select example" name="buscar">
+                        <option value="-1"selected>Todas las mascotas</option>
+                        <option value="1">Perros</option>
+                        <option value="2">Gatos</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <select class="form-select" aria-label="Default select example" name="buscar2">
+                        <option value="-1"selected>Elige el sexo</option>
+                        <option value="0">Hembra</option>
+                        <option value="1">Macho</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-end mb-2">
+                    <button type="submit" class="btn btnSolicitar text-white" value="search">Aplicar Filtros</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">{% for m in mascotas %}
+        <div class="col-lg-3 col-md-4 col-xs-4 offset-xs-4 ">
+            <div class="card sombra text-center mb-5">
+                {% if m.imagen %}
+                <img src="{{ m.imagen.url }}" class="img-fluid mascota mx-auto" alt="..."> 
+                {% endif %}
+                <div class="card-body cardMascota">
+                    <div class="marginCard">   
+                        <h3>{{ m.nombre_mascota}}</h3>
+                        <hr>
+                        <p>{{ m.descripcion }}</p>
+                    </div>
+                                  
+                </div>
+                <div class="pt-3 pb-2 mb-3">
+                    <a href="{% url 'solicitud_adopcion'%}" class="btn btn-outline linkSolicitar text-center mt-2">Solicitar Adopción</a>
+                </div> 
+            </div>
+        </div>
+        {% empty %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>¡Oh no! Lo sentimos no tenemos esas mascotas</h1>
+                <img src="" alt="" class="img-fluid mx-auto">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

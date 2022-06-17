@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+    
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    {% load crispy_forms_tags %}
+    
+<br>
+<h2 class="text-center letraInicio">CAMBIAR CONTRASEÑA</h2>
+<hr>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 ">
+        <div class="card">
+            <div class="card-body row mb-4 pt-2">
+                <h5 class="letraOlvido text-center mt-2">¿Quieres cambiar tu contraseña?</h5>
+                <p class="letraOlvido mt-2 text-center">Complete los campos solicitados a continuación para poder cambiar su contraseña</p>
+                <div class="col-8 offset-2 pt-2">
+                    <form action="" method="POST">
+                        {% csrf_token %} {{form | crispy}}   
+                        <div class="col-4 offset-4">
+                            <input type="submit" class="btn btn-success btnEnviar" name="enviarCorreo">
+                        </div>                       
+                    </form>      
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

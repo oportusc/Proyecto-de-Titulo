@@ -1,0 +1,45 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+img {
+    width: 300px
+}
+
+#img2 {
+    transform: scaleX(-1);
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+footer {
+    background-color: #65b9bd;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+}
+
+#content-footer {
+    color: white !important;
+}
+
+
+.nav-link, .dropdown-item{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-style: medium;
+    font-weight:400;
+}
+.tituloListar{
+    font-family: 'Poppins';
+    font-style: ExtraLigth;
+    font-weight:200;
+}
+.letraFooter{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-style: medium;
+    font-weight:400;
+}

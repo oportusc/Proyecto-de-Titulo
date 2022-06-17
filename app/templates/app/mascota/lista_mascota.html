@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Mascotas</title>
+</head>
+
+<body>
+
+</body>
+<h2 class="text-center tituloListar">LISTADO DE MASCOTAS</h2>
+<hr>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover ">
+            <tr>
+                <th>Nombre mascota</th>
+                <th>Especie</th>
+                <th>Edad </th>
+                <th>Descripción</th>
+            </tr>
+            {% for m in mascotas %}
+            <tr>
+                <td>{{ m.nombre_mascota | title }}</td>
+                <td>{{ m.especie }}</td>
+                <td>{{ m.edad_mascota }}</td>
+                <td>{{ m.descripcion }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+</html>

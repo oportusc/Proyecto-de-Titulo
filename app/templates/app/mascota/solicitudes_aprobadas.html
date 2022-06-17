@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+
+<!-- BLOCK JS  -->
+{% block js %}
+
+{% endblock %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/mascotas.css' %}"> 
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center tituloListar">SOLICITUDES APROBADAS</h2>
+        <hr>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover ">
+            
+            <tr>
+                <th>Nombre Completo</th>
+                <th>telefono</th>
+                <th>Fecha Solicitud</th>
+                <th>Mascota</th>
+                <th>Estado Solicitud</th>
+                <th>Opciones</th>
+            </tr>
+            {% for m in solicitudes %}
+            {%  if m.estado_solicitud == 'Aprobada' %}
+            <tr>
+                <td>{{ m.nombres | title }}</td>
+                <td>{{ m.telefono }}</td>
+                <td>{{ m.fecha_solicitud }}</td>
+                <td>{{ m.mascota }}</td>
+                <td>{{ m.estado_solicitud }}</td>
+                <td class="d-flex">
+                    <a href="{% url 'ver_aprobada' m.id %}" class="btn btn-outline linkSolicitar text-center btn-sm"> Visualizar Solicitud
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+    
+        </table>
+        
+    </div>
+</div>
+
+{% endblock %}

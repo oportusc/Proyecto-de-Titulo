@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'app/css/mascotas.css' %}">  -->
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %}
+<!-- Importamos crispy -->
+{% load crispy_forms_tags %}
+<!-- Contenido de la web -->
+<h2 class="text-center letraInicio">Contactanos</h2>
+<hr>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card" id="cardAgregar">
+            <div class="card-body">
+                <form action="" class="formulario_contacto" method="POST">
+                    <!-- Para ingresar datos-->
+                    {% csrf_token %}
+                    <!-- Fromulario Django-->
+                    {{ form | crispy }}
+
+                    <br>
+                    <div class="d-flex justify-content-end">
+                        <input type="reset" value="Cancelar" class="btn btn-secondary"> &nbsp;
+                        <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+
+                {{mensaje}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

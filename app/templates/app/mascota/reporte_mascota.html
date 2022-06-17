@@ -1,0 +1,34 @@
+{% block contenido %}
+<h2 class="text-center tituloListar">REPORTE DE MASCOTAS</h2>
+<hr>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover ">
+            <tr>
+                <th>Nombre mascota</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Edad </th>
+                <th>Peso</th>
+                <th>Descripción</th>
+            </tr>
+            {% for m in mascotas %}
+            <tr>
+                <td>{{ m.nombre_mascota | title }}</td>
+                <td>{{ m.especie }}</td>
+                <td>{{ m.raza }}</td>
+                <td>{{ m.edad_mascota }}</td>
+                <td>{{ m.peso }}</td>
+                <td>{{ m.descripcion }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

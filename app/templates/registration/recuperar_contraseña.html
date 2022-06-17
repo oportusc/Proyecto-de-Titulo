@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+    
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    {% load crispy_forms_tags %}
+    
+<br>
+<h2 class="text-center letraInicio">Recuperar Contraseña</h2>
+<hr>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 ">
+        <div class="card">
+            <div class="card-body row mb-4 pt-2">
+                <h5 class="letraOlvido text-center mt-2">¿Olvidaste tu contraseña?</h5>
+                <p class="letraOlvido mt-2">Ingrese su dirección de correo electrónico a continuación y le enviaremos las instrucciones para configurar una nueva.</p>
+                <div class="col-8 offset-2 pt-2">
+                    <form action="" method="POST">
+                        {% csrf_token %} {{form | crispy}}   
+                        <div class="col-4 offset-4">
+                            <input type="submit" class="btn btn-success btnEnviar" name="enviarCorreo">
+                        </div>                       
+                    </form>      
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

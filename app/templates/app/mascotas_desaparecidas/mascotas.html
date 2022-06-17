@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK JS -->
+{%block js %} {% endblock%}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/mascotas.css' %}"> 
+
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %}
+<!-- Contenido de la web -->
+<div class="container ">
+    <div class="row">
+        <h2 class="text-center letraInicio">¿Encontraste o Perdiste una mascota? &nbsp; &nbsp;<a class="btn btn-outline linkPublicar" href="{% url 'agregar_mascota_desaparecida' %}">Publicala!</a></h2>
+        
+        <hr>
+        <div class="col-6 offset-6 search bordeFiltro pt-2">
+            <form method="POST" class="row justify-content-between">
+                {% csrf_token %}
+                <div class="col-8 mb-2">
+                    <select class="form-select" aria-label="Default select example" name="buscar">
+                        <option value="-1"selected>Tipo de Publicación</option>
+                        <option value="Mascota Perdida">Mascotas Perdidas</option>
+                        <option value="Mascota Encontrada">Mascotas Encontradas</option>
+                    </select>
+                </div>
+                <div class="col-4 d-flex justify-content-end mb-2">
+                    <button type="submit" class="btn btnSolicitar text-white" value="search">Aplicar Filtros</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">{% for m in mascotas %}
+        <div class="col-lg-3 col-md-4 col-xs-4 offset-xs-4 ">
+            <div class="card mb-5 cardHeader">   
+                <div class="card-body cardMascotaDesaparecida">
+                    <div class="marginCard"> 
+                        {% if m.tipo_publicacion == 'Mascota Perdida' %}
+                        <div class="form-group mb-3 text-center">
+                            <label for="descripcion">Mascota PERDIDA</label>
+                        </div>
+                        {% elif m.tipo_publicacion == 'Mascota Encontrada' %}
+                        <div class="form-group mb-3 text-center">
+                            <label for="descripcion">Mascota ENCONTRADA</label>
+                        </div>
+                        {% endif %}  
+                        <div class="text-center">
+                            {% if m.imagen %}
+                            <img src="{{ m.imagen.url }}" class="img-fluid mb-3 imagenDesaparecida" alt="..."> 
+                            {% endif %}
+                        </div>
+                        
+                        <h3 class="text-center">{{ m.nombre_desaparecida}}</h3>
+                        <hr>
+                        <div class="form-group">
+                            <label for="fechaDesaparicion"><u>Fecha Perdida / Encontrada:</u></label>
+                            <p id="fechaDesaparicion">{{ m.fecha_desaparecida }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaPublicacion"><u>Fecha Publicación:</u></label>
+                            <p id="fechaPublicacion">{{ m.fecha_publicacion }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="region"><u>Región:</u></label>
+                            <p id="region">{{ m.region }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="comuna"><u>Comuna:</u></label>
+                            <p id="comuna">{{ m.comuna }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="lugar"><u>Lugar:</u></label>
+                            <p id="lugar">{{ m.lugar }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="numContacto"><u>Numero de Contacto:</u></label>
+                            <p id="numContacto">{{ m.numero_contacto }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion"><u>Descripción:</u></label>
+                            <p id="descripcion">{{ m.descripcion }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row">
+            <div class="col-12 text-center mt-4">
+                <h1>¡Oh no! Lo sentimos no tenemos publicaciones de ese tipo</h1>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

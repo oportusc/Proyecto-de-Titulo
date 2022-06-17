@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+
+<!-- BLOCK JS  -->
+{% block js %}
+
+{% endblock %}
+
+<!-- CARGA ARCHIVOS ESTATICOS -->
+{% load static %}
+
+<!-- BLOCK CSS -->
+{% block css %}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+{% endblock %}
+
+<!-- BLOCK CONTENIDO -->
+{% block contenido %} {% load crispy_forms_tags %}
+<h2 class="text-center letraInicio">DETALLE SOLICITUD</h2>
+<hr>
+<div class="row">
+    
+    <div class="col-12 col-md-8 offset-md-2">
+        <div class="card" id="cardAgregar">
+            <div class="card-body">
+                
+                <form action="" id="verSolicitudForm" method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %} {{form | crispy }}
+                </form>
+                {{mensaje}}
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<br><br> 
+
+<script>
+
+    var f = document.forms['verSolicitudForm'];
+        for(var i=0,fLen=f.length;i<fLen;i++){
+        f.elements[i].readOnly = true;
+    }
+
+    const x = document.getElementById('id_tipo_vivienda')
+    x.disabled=true
+
+    const a = document.getElementById('id_cantidad_mascotas')
+    a.disabled=true
+
+    const b = document.getElementById('id_mascota')
+    b.disabled=true
+    
+    const c = document.getElementById('id_estado_solicitud')
+    c.disabled=true
+
+    const d = document.getElementById('id_otra_mascota')
+    d.disabled=true
+    
+</script>
+
+{% endblock %}
